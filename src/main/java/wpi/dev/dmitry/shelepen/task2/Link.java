@@ -1,9 +1,9 @@
 package wpi.dev.dmitry.shelepen.task2;
 
 public class Link {
-    private int from ;
-    private int to ;
-    private int hard ;
+    private int from;
+    private int to;
+    private int hard;
 
     public Link(int from, int to, int hard) {
         this.from = from;
@@ -34,7 +34,4 @@ public class Link {
     public void setHard(int hard) {
         this.hard = hard;
     }
-
-
-
 }

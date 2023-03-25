@@ -9,20 +9,12 @@ public class Application {
     SearchingSequenceService sequenceService = new SearchingSequenceService();
 
     public static void main(String[] args) {
-        new Application().sho();
+        new Application().findCorrectSequenceFromFileAndWriteResultToFile();
     }
 
-    public void sho() {
+    public void findCorrectSequenceFromFileAndWriteResultToFile() {
         List<String> lines = fileUtils.readInputDataFromFile("SHO.IN");
-        List<int[][]> boardsList = boardExtractor.extract(lines);
-
-        String result = sequenceService.searchCorrectSequences(boardsList);
+        String result = sequenceService.searchCorrectSequences(boardExtractor.extract(lines));
         fileUtils.writeDataToTargetFile("SHO.OUT", result);
     }
-
-
-
-
-
-
 }

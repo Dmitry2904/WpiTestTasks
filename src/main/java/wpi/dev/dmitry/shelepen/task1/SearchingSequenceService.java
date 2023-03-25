@@ -17,8 +17,8 @@ public class SearchingSequenceService {
 
     public String searchCorrectSequence(int[][] board) {
         StringBuilder result = new StringBuilder();
-        boolean founded = foundSequence(-1, new LinkedList<>(), board);
-        if (founded) {
+        boolean found = foundSequence(0, new LinkedList<>(), board);
+        if (found) {
             int columnSize = board.length;
             for (int i = 0; i < columnSize; i++) {
                 result.append((correctSequence.get(i) + 1)).append(" ");
@@ -32,7 +32,6 @@ public class SearchingSequenceService {
 
 
     private boolean foundSequence(int columnIndex, LinkedList<Integer> res, int[][] board) {
-        columnIndex++;
         int countOfColumns = board[0].length;
         if (columnIndex == countOfColumns) {
             correctSequence = new ArrayList<>(res);
@@ -40,8 +39,8 @@ public class SearchingSequenceService {
         }
         List<Integer> whiteCellIndexes = searchWhiteCellIndexesInColumn(columnIndex, board);
 
-        if (searchNext(columnIndex, res, whiteCellIndexes.get(0), board)) return true;
-        if (searchNext(columnIndex, res, whiteCellIndexes.get(1), board)) return true;
+        if (tryToFindTheNextCell(columnIndex, res, whiteCellIndexes.get(0), board)) return true;
+        if (tryToFindTheNextCell(columnIndex, res, whiteCellIndexes.get(1), board)) return true;
 
         //not found
         return false;
@@ -57,11 +56,11 @@ public class SearchingSequenceService {
         return whiteCellIndexes;
     }
 
-    private boolean searchNext(int columnIndex, LinkedList<Integer> res, int whiteCellIndex, int[][] board) {
+    private boolean tryToFindTheNextCell(int columnIndex, LinkedList<Integer> res, int whiteCellIndex, int[][] board) {
         if (!res.contains(whiteCellIndex)) {
             res.add(whiteCellIndex);
-            boolean founded = foundSequence(columnIndex, res, board);
-            if (founded) {
+            boolean found = foundSequence(++columnIndex, res, board);
+            if (found) {
                 return true;
             } else {
                 res.removeLast();

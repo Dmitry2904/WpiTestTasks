@@ -1,4 +1,4 @@
-package wpi.dev.dmitry.shelepen.task1;
+package wpi.dev.dmitry.shelepen.task2;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -29,4 +29,5 @@ public class FileUtils {
             e.printStackTrace();
         }
     }
+
 }
